@@ -45,8 +45,11 @@ void setup() {
   
   println(Arduino.list());
   arduino = new Arduino(this, Arduino.list()[arduinoPort], 57600);
-  for (int i = 0; i <= 13; i++)
-    arduino.pinMode(i, Arduino.INPUT);
+  
+  arduino.pinMode(resetPIN, Arduino.INPUT);
+  arduino.pinMode(alexisPIN, Arduino.OUTPUT);
+  arduino.pinMode(jamesPIN, Arduino.OUTPUT);
+  arduino.pinMode(talaPIN, Arduino.OUTPUT);
     
   client = new MQTTClient(this);
   client.connect(server, username);
