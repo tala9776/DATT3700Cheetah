@@ -8,14 +8,6 @@ OscP5 osc;
 MQTTClient client;
 //Arduino arduino;
 
-class Member {
-  int memberID;
-  String colour;
-  boolean present;
-  float x;
-  float y;
-}
-
 String username = "James";
 String server = "mqtt://datt3700:datt3700experiments@datt3700.cloud.shiftr.io";
 //int arduinoPort = 13;
@@ -51,8 +43,6 @@ boolean allMembersPresent = false;
 boolean alexisPresent = false;
 boolean jamesPresent = false;
 boolean talaPresent = false;
-
-//Member[] members;
 
 void messageReceived(String topic, byte[] payload) {
   //println("new message: " + topic + " - " + new String(payload));
@@ -128,8 +118,6 @@ void setup() {
   img6 = loadImage(imgName6);
   
   osc = new OscP5(this, 8000);
-  
-  //members = new Member[10];
 }
 
 void draw() { 
@@ -167,7 +155,7 @@ void draw() {
     imageDisplay();
     
     if (aMemberPresent) {
-      memberDisaplay();
+      membersDisaplay();
     }
     /*
     if (allMembersPresent) {
@@ -180,7 +168,7 @@ void draw() {
     imageDisplay();
     
     if (aMemberPresent) {
-      memberDisaplay();
+      membersDisaplay();
     }
     /*
     if (allMembersPresent) {
@@ -191,18 +179,22 @@ void draw() {
   
   else if (timer > 500 && timer < 750) {
     imageDisplay();
+    
+    if (aMemberPresent) {
+      membersDisaplay();
+    }
     /*
     if (allMembersPresent) {
       timer += 10;
       client.publish("/LAB1CHEETAH/TIMER", str(timer));
-    } */   
+    } */
   }
   
   else if (timer > 750 && timer < 1000) {
     imageDisplay();
     
     if (aMemberPresent) {
-      memberDisaplay();
+      membersDisaplay();
     }
     /*
     if (allMembersPresent) {
@@ -215,7 +207,7 @@ void draw() {
     imageDisplay();
     
     if (aMemberPresent) {
-      memberDisaplay();
+      membersDisaplay();
     }
     /*
     if (allMembersPresent) {
@@ -228,7 +220,7 @@ void draw() {
     imageDisplay();
     
     if (aMemberPresent) {
-      memberDisaplay();
+      membersDisaplay();
     }
     /*
     if (allMembersPresent) {
@@ -238,7 +230,7 @@ void draw() {
   }
 }
 
-void memberDisaplay() {
+void membersDisaplay() {
   
   if (talaPresent) {
     fill(200, 100, 100);

@@ -8,14 +8,6 @@ OscP5 osc;
 MQTTClient client;
 //Arduino arduino;
 
-class Member {
-  int memberID;
-  String colour;
-  boolean present;
-  float x;
-  float y;
-}
-
 String username = "Alexis";
 String server = "mqtt://datt3700:datt3700experiments@datt3700.cloud.shiftr.io";
 //int arduinoPort = 13;
@@ -51,8 +43,6 @@ boolean allMembersPresent = false;
 boolean alexisPresent = false;
 boolean jamesPresent = false;
 boolean talaPresent = false;
-
-//Member[] members;
 
 void messageReceived(String topic, byte[] payload) {
   //println("new message: " + topic + " - " + new String(payload));
@@ -90,7 +80,6 @@ void messageReceived(String topic, byte[] payload) {
     String timerStr = new String(payload);
     timer = int(timerStr);
   } 
-  
 }
 
 void setup() {
@@ -129,8 +118,6 @@ void setup() {
   img6 = loadImage(imgName6);
   
   osc = new OscP5(this, 8000);
-  
-  //members = new Member[10];
 }
 
 void draw() { 
@@ -168,7 +155,7 @@ void draw() {
     imageDisplay();
     
     if (aMemberPresent) {
-      memberDisaplay();
+      membersDisaplay();
     }
     /*
     if (allMembersPresent) {
@@ -181,7 +168,7 @@ void draw() {
     imageDisplay();
     
     if (aMemberPresent) {
-      memberDisaplay();
+      membersDisaplay();
     }
     /*
     if (allMembersPresent) {
@@ -203,7 +190,7 @@ void draw() {
     imageDisplay();
     
     if (aMemberPresent) {
-      memberDisaplay();
+      membersDisaplay();
     }
     /*
     if (allMembersPresent) {
@@ -216,7 +203,7 @@ void draw() {
     imageDisplay();
     
     if (aMemberPresent) {
-      memberDisaplay();
+      membersDisaplay();
     }
     /*
     if (allMembersPresent) {
@@ -229,7 +216,7 @@ void draw() {
     imageDisplay();
     
     if (aMemberPresent) {
-      memberDisaplay();
+      membersDisaplay();
     }
     /*
     if (allMembersPresent) {
@@ -239,7 +226,7 @@ void draw() {
   }
 }
 
-void memberDisaplay() {
+void membersDisaplay() {
   
   if (talaPresent) {
     fill(200, 100, 100);
