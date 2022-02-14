@@ -61,31 +61,31 @@ boolean talaPresent = false;
 void messageReceived(String topic, byte[] payload) {
   //println("new message: " + topic + " - " + new String(payload));
   
-  if (topic.equals("/LAB1CHEETAH/ALEXIS")) {
+  if (topic.equals("/LAB1CHEETAH/ALEXIS/PRESENCE")) {
     String alexisStr = new String(payload);
     alexisPresent = boolean(alexisStr);
-  } else if (topic.equals("/LAB1CHEETAH/ALEXISX")) {
+  } else if (topic.equals("/LAB1CHEETAH/ALEXIS/X")) {
     String alexisXStr = new String(payload);
     alexisX = float(alexisXStr);
-  } else if (topic.equals("/LAB1CHEETAH/ALEXISY")) {
+  } else if (topic.equals("/LAB1CHEETAH/ALEXIS/Y")) {
     String alexisYStr = new String(payload);
     alexisY = float(alexisYStr);
-  } else if (topic.equals("/LAB1CHEETAH/JAMES")) {
+  } else if (topic.equals("/LAB1CHEETAH/JAMES/PRESENCE")) {
     String jamesStr = new String(payload);
     jamesPresent = boolean(jamesStr);
-  } else if (topic.equals("/LAB1CHEETAH/JAMESX")) {
+  } else if (topic.equals("/LAB1CHEETAH/JAMES/X")) {
     String jamesXStr = new String(payload);
     jamesX = float(jamesXStr);
-  } else if (topic.equals("/LAB1CHEETAH/JAMESY")) {
+  } else if (topic.equals("/LAB1CHEETAH/JAMES/Y")) {
     String jamesYStr = new String(payload);
     jamesY = float(jamesYStr);
-  } /* else if (topic.equals("/LAB1CHEETAH/TALA")) {
+  } /* else if (topic.equals("/LAB1CHEETAH/TALA/PRESENCE")) {
     String talaStr = new String(payload);
     talaPresent = boolean(talaStr);
-  } else if (topic.equals("/LAB1CHEETAH/TALAX")) {
+  } else if (topic.equals("/LAB1CHEETAH/TALA/X")) {
     String talaXStr = new String(payload);
     talaX = float(talaXStr);
-  } else if (topic.equals("/LAB1CHEETAH/TALAY")) {
+  } else if (topic.equals("/LAB1CHEETAH/TALA/Y")) {
     String talaYStr = new String(payload);
     talaY = float(talaYStr);
   } else if (topic.equals("/LAB1CHEETAH/TIMER")) {
@@ -112,15 +112,15 @@ void setup() {
   client = new MQTTClient(this);
   client.connect(server, username);
   
-  //client.subscribe("/LAB1CHEETAH/TALA");
-  //client.subscribe("/LAB1CHEETAH/TALAX");
-  //client.subscribe("/LAB1CHEETAH/TALAY");
-  client.subscribe("/LAB1CHEETAH/JAMES");
-  client.subscribe("/LAB1CHEETAH/JAMESX");
-  client.subscribe("/LAB1CHEETAH/JAMESY");
-  client.subscribe("/LAB1CHEETAH/ALEXIS");
-  client.subscribe("/LAB1CHEETAH/ALEXISX");
-  client.subscribe("/LAB1CHEETAH/ALEXISY");
+  //client.subscribe("/LAB1CHEETAH/TALA/PRESENCE");
+  //client.subscribe("/LAB1CHEETAH/TALA/X");
+  //client.subscribe("/LAB1CHEETAH/TALA/Y");
+  client.subscribe("/LAB1CHEETAH/JAMES/PRESENCE");
+  client.subscribe("/LAB1CHEETAH/JAMES/X");
+  client.subscribe("/LAB1CHEETAH/JAMES/Y");
+  client.subscribe("/LAB1CHEETAH/ALEXIS/PRESENCE");
+  client.subscribe("/LAB1CHEETAH/ALEXIS/X");
+  client.subscribe("/LAB1CHEETAH/ALEXIS/Y");
   //client.subscribe("/LAB1CHEETAH/TIMER");
   
   img1 = loadImage(imgName1);
@@ -139,14 +139,14 @@ void draw() {
   
   if(newX == talaX && newY == talaY) {
     talaPresent = false;
-    client.publish("/LAB1CHEETAH/TALA", str(talaPresent));
+    client.publish("/LAB1CHEETAH/TALA/PRESENCE", str(talaPresent));
   } else {
     talaX = newX;
     talaY = newY;
     talaPresent = true;
-    client.publish("/LAB1CHEETAH/TALA", str(talaPresent));
-    client.publish("/LAB1CHEETAH/TALAX", str(talaX));
-    client.publish("/LAB1CHEETAH/TALAY", str(talaY));
+    client.publish("/LAB1CHEETAH/TALA/PRESENCE", str(talaPresent));
+    client.publish("/LAB1CHEETAH/TALA/X", str(talaX));
+    client.publish("/LAB1CHEETAH/TALA/Y", str(talaY));
   }
   
   if (talaPresent && alexisPresent && jamesPresent) {
