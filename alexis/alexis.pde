@@ -233,7 +233,7 @@ void draw() {
     }
     /*
     if (allMembersPresent) {
-      timer += 10;
+      timer = 1300;
       client.publish("/LAB1CHEETAH/TIMER", str(timer));
     } */
   }

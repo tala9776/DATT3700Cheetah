@@ -105,7 +105,7 @@ void draw() {
     
     if (aMemberPresent) {
       memberDisaplay();
-      timer += 10;
+      timer = 600;
     }
   }
 }
